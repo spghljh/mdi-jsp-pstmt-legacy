@@ -48,9 +48,9 @@ public class DbConnection {
 	    try {
 	        Context ctx = new InitialContext();
 //	        DataSource ds = (DataSource) ctx.lookup("java:comp/env/" + jndiName);
-//	        DataSource ds = (DataSource) ctx.lookup("java:comp/env/mdi-jsp-oracle");
+	        DataSource ds = (DataSource) ctx.lookup("java:comp/env/mdi-jsp-oracle");
 //	        DataSource ds = (DataSource) ctx.lookup("java:comp/env/mdi-jsp-psql");
-	        DataSource ds = (DataSource) ctx.lookup("java:comp/env/mdi-jsp-mysql");
+//	        DataSource ds = (DataSource) ctx.lookup("java:comp/env/mdi-jsp-mysql");
 	        System.out.println("DataSource: " + ds);
 	        Connection con = ds.getConnection();
 	        System.out.println("Connection: " + con);
