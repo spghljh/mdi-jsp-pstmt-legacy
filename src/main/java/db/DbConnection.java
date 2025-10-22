@@ -29,19 +29,38 @@ public class DbConnection {
 		return dbcon;
 	}
 
+//	public Connection getDbConn() {
+//		try {
+//			Context ctx = new InitialContext();
+//			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/mdi");
+//			System.out.println("DataSource: " + ds); // null이면 JNDI 실패
+//			Connection con = ds.getConnection();
+//			System.out.println("Connection: " + con); // null이면 DB 연결 실패
+//			return con;
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return null;
+//		}
+//	}
+	
+//	public Connection getDbConn(String jndiName) {
 	public Connection getDbConn() {
-		try {
-			Context ctx = new InitialContext();
-			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/mdi");
-			System.out.println("DataSource: " + ds); // null이면 JNDI 실패
-			Connection con = ds.getConnection();
-			System.out.println("Connection: " + con); // null이면 DB 연결 실패
-			return con;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+	    try {
+	        Context ctx = new InitialContext();
+//	        DataSource ds = (DataSource) ctx.lookup("java:comp/env/" + jndiName);
+//	        DataSource ds = (DataSource) ctx.lookup("java:comp/env/mdi-jsp-oracle");
+//	        DataSource ds = (DataSource) ctx.lookup("java:comp/env/mdi-jsp-psql");
+	        DataSource ds = (DataSource) ctx.lookup("java:comp/env/mdi-jsp-mysql");
+	        System.out.println("DataSource: " + ds);
+	        Connection con = ds.getConnection();
+	        System.out.println("Connection: " + con);
+	        return con;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return null;
+	    }
 	}
+
 
 	public void dbClose(ResultSet rs, Statement stmt, Connection con) throws SQLException {
 		try {
